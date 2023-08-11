@@ -11,6 +11,7 @@ func SetupRoute() *gin.Engine {
 	v1 := router.Group("/api/v1")
 	{
 		v1.POST("game", controllers.CreateGame)
+		v1.GET("game", controllers.GetGames)
 	}
 
 	return router

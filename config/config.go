@@ -11,3 +11,6 @@ func LoadEnv() {
 		log.Fatal("Error loading .env file", err)
 	}
 }
+
+
+const GAMES_TBL = "games"

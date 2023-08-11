@@ -27,3 +27,13 @@ func CreateGame(c *gin.Context) {
 		"msg":    "ok",
 	})
 }
+
+func GetGames(c *gin.Context) {
+	games, err := db.GetGames()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"items": games})
+}
