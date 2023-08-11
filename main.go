@@ -1,26 +1,15 @@
 package main
 
 import (
-	"log"
-	"net/http"
-
-	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
+	"github.com/lampesm/game-time/config"
 	"github.com/lampesm/game-time/db"
+	"github.com/lampesm/game-time/router"
 )
 
 func main() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file", err)
-	}
-
+	config.LoadEnv()
 	db.Connection()
 
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+	r := router.SetupRoute()
 	r.Run()
 }
